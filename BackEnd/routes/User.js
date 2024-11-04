@@ -1,215 +1,194 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs")
 const db = require("../config/db");
 
-const saltRounds = 10;
+const saltRounds = 10
 
-// Adding new user
+// adding new user
 router.post("/addUser", (req, res) => {
-    const { name, email, pass, gender, picpath } = req.body;
+  console.log(JSON.stringify(req.body))
+  const name = req.body.name;
+  const email = req.body.email;
+  const pass = req.body.pass;
+  const gender = req.body.gender;
+  const pic = req.body.picpath;
 
-    if (!name || !email || !pass || !gender) {
-        return res.status(400).send({ error: "Missing required fields" });
-    }
 
-    // Check if the email already exists
-    db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send({ error: "Database error" });
-        }
 
+
+  db.query(
+    //first we are gonna check if this email alredy exsit in the DB
+    `SELECT * FROM users WHERE email = "${req.body.email}"`, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("result" + JSON.stringify(result))
         if (result.length === 0) {
-            // Hash the password before storing
-            bcrypt.hash(pass, saltRounds, (err, hash) => {
+          bcrypt.hash(pass, saltRounds, (err, hash) => {
+            if (err) {
+              console.log
+            }
+            db.query(
+              //we are gona add this user
+              "INSERT INTO users (name, email, pass, gender ,pic) VALUES (?,?,?,?,?)",
+              [name, email, hash, gender, pic],
+              (err, myresult) => {
                 if (err) {
-                    console.error(err);
-                    return res.status(500).send({ error: "Error hashing password" });
-                }
+                  console.log(err);
+                } else {
+                  db.query(
+                    `SELECT id FROM users WHERE email = "${req.body.email}"`, (err, idresult) => {
+                      if (err) {
+                        console.log(err);
+                      } else {
+                        console.log("idresult " + JSON.stringify(idresult[0].id))
+                        //befor adding a new user we need to set  tow  cookies 1)logedin=true 2)userid=userid
+                        res.send(`${idresult[0].id}`)
 
-                // Insert the new user
-                db.query(
-                    "INSERT INTO users (name, email, pass, gender, pic) VALUES (?, ?, ?, ?, ?)",
-                    [name, email, hash, gender, picpath],
-                    (err, myresult) => {
-                        if (err) {
-                            console.error(err);
-                            return res.status(500).send({ error: "Database error" });
-                        }
-
-                        // Retrieve the new user ID
-                        db.query("SELECT id FROM users WHERE email = ?", [email], (err, idresult) => {
-                            if (err) {
-                                console.error(err);
-                                return res.status(500).send({ error: "Database error" });
-                            }
-
-                            res.send({ userId: idresult[0].id });
-                        });
-                    }
-                );
-            });
-        } else {
-            // Email already exists
-            res.status(400).send({ error: "Email already exists" });
-        }
-    });
-});
-
-// Checking if the user exists (login)
-router.post("/checkuser", (req, res) => {
-    const { email, pass } = req.body;
-
-    if (!email || !pass) {
-        return res.status(400).send({ error: "Missing required fields" });
-    }
-
-    // Find the user by email
-    db.query("SELECT id, name, pic, pass FROM users WHERE email = ?", [email], (err, idresult) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send({ error: "Database error" });
-        }
-
-        if (idresult.length === 0) {
-            return res.status(404).send({ error: "User not found" });
-        }
-
-        // Compare passwords
-        bcrypt.compare(pass, idresult[0].pass, (err, result) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send({ error: "Error comparing passwords" });
-            }
-
-            if (result) {
-                res.json({
-                    name: idresult[0].name,
-                    id: idresult[0].id,
-                    picpath: idresult[0].pic,
-                });
-            } else {
-                res.status(400).send({ error: "Wrong password" });
-            }
-        });
-    });
-});
-
-// Getting a specific user's info
-router.get("/:userid", (req, res) => {
-    const { userid } = req.params;
-
-    if (!userid) {
-        return res.status(400).send({ error: "Missing userid parameter" });
-    }
-
-    db.query("SELECT * FROM users WHERE id = ?", [userid], (err, results) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send({ error: "Database error" });
-        }
-        res.send(results);
-    });
-});
-
-// Get the users that follow this user
-router.get("/followers/:userid", (req, res) => {
-    const { userid } = req.params;
-
-    if (!userid) {
-        return res.status(400).send({ error: "Missing userid parameter" });
-    }
-
-    db.query(
-        "SELECT id FROM users WHERE id IN (SELECT follower FROM followingactions WHERE following = ?)",
-        [userid],
-        (err, results) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send({ error: "Database error" });
-            }
-            res.send(results);
-        }
-    );
-});
-
-// Get the users that this user follows
-router.get("/following/:userid", (req, res) => {
-    const { userid } = req.params;
-
-    if (!userid) {
-        return res.status(400).send({ error: "Missing userid parameter" });
-    }
-
-    db.query(
-        "SELECT id FROM users WHERE id IN (SELECT following FROM followingactions WHERE follower = ?)",
-        [userid],
-        (err, results) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send({ error: "Database error" });
-            }
-            res.send(results);
-        }
-    );
-});
-
-// Deleting a user and all related activities
-router.delete("/:userid", (req, res) => {
-    const { userid } = req.params;
-
-    if (!userid) {
-        return res.status(400).send({ error: "Missing userid parameter" });
-    }
-
-    // Delete all activities related to the user
-    db.query("DELETE FROM likes WHERE userId = ?", [userid], (err) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send({ error: "Database error" });
-        }
-
-        db.query("DELETE FROM save WHERE userId = ?", [userid], (err) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send({ error: "Database error" });
-            }
-
-            db.query("DELETE FROM followingactions WHERE follower = ? OR following = ?", [userid, userid], (err) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).send({ error: "Database error" });
-                }
-
-                db.query("DELETE FROM comments WHERE userId = ?", [userid], (err) => {
-                    if (err) {
-                        console.error(err);
-                        return res.status(500).send({ error: "Database error" });
-                    }
-
-                    db.query("DELETE FROM users WHERE id = ?", [userid], (err, results) => {
-                        if (err) {
-                            console.error(err);
-                            return res.status(500).send({ error: "Database error" });
-                        }
-                        res.send(results);
+                      }
                     });
-                });
-            });
-        });
+                }
+              }
+            );
+          } );
+        }
+        else {
+          // no we are npt gona add him 
+        
+          res.send("-17")// we dont want to send 0 but we are sending -17 cuse its no >0
+        }
+
+      }
     });
 });
 
-// Getting all users
-router.get("/", (req, res) => {
-    db.query("SELECT * FROM users", (err, results) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).send({ error: "Database error" });
+// cheking if the user exist in the database
+router.post("/checkuser", (req, res) => {
+  console.log(JSON.stringify(req.body))
+  const email = req.body.email;
+  const pass = req.body.pass;
+  db.query(
+    `SELECT id,name,pic,pass  FROM users WHERE email = "${email}" `, (err, idresult) => {
+      console.log(idresult);
+      if (err) {
+        console.log(err);
+      } else {
+        if (idresult.length === 0) {
+          res.send({ msg: "user doesn't exist 😥. but you can sign up now 😀" })
         }
-        res.send(results);
+        else {
+          console.log("this user is  in the data base")
+          console.log("idresult " + JSON.stringify(idresult[0].id))
+          //after checking that this user exist we are adding two cookies 1)logedin=true 2)userid=userid
+          bcrypt.compare(pass, idresult[0].pass, (err, result) => {
+            if (result) {
+              res.json({ "name": `${(idresult[0].name)}`, "id": `${(idresult[0].id)}`, "picpath": `${(idresult[0].pic)}` })
+            }
+            else { res.send({ msg: "wrong pass/email combination 😥" }) }
+          })
+        }
+
+
+      }
     });
+
+})
+
+// geting a specific user info
+router.get("/:userid", (req, res) => {
+  db.query(
+    `SELECT * FROM users WHERE id = ${req.params.userid}`,
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      }
+      res.send(results);
+    }
+  );
 });
+
+//get the users that follow this user
+router.get("/followers/:userid", (req, res) => {
+  db.query(
+    `SELECT id FROM users WHERE id in (SELECT follower FROM followingactions WHERE following =  ${req.params.userid} )`,
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      }
+      res.send(results);
+    }
+  );
+});
+
+
+//getting the users that this user follow
+router.get("/following/:userid", (req, res) => {
+  db.query(
+    `SELECT id FROM users WHERE id in (SELECT following FROM followingactions WHERE follower =  ${req.params.userid} )`,
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      }
+      res.send(results);
+    }
+  );
+});
+
+// deleting a user
+router.delete("/:userid", (req, res) => {
+  // befor deleting a post we should delete all the activetes that are related to this post ( likes, saves)
+  db.query(`DELETE FROM likes WHERE userId = ${req.params.userid}`, (err, likeresults) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log(likeresults);
+      db.query(`DELETE FROM save WHERE userid = ${req.params.userid}`, (err, saveresults) => {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          db.query(`DELETE FROM followingactions WHERE follower = ${req.params.userid} or following = ${req.params.userid} `, (err, saveresults) => {
+            if (err) {
+              console.log(err);
+            }
+            else {
+              db.query(`DELETE FROM comments WHERE userId = ${req.params.userid} `, (err, saveresults) => {
+                if (err) {
+                  console.log(err);
+                }
+                else {
+                  db.query(`DELETE FROM users WHERE id = ${req.params.userid}`, (err, results) => {
+                    if (err) {
+                      console.log(err);
+                    }
+                    else { res.send(results) }
+                  })
+                }
+              })
+            }
+          })
+        }
+      })
+    }
+  })
+
+});
+
+// getting all the users
+router.get("/", (req, res) => {
+  db.query(
+    `SELECT * FROM users`,
+    (err, results) => {
+      if (err) {
+        console.log(err);
+      }
+      res.send(results);
+    }
+  );
+});
+
+
 
 module.exports = router;

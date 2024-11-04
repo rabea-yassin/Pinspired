@@ -1,131 +1,98 @@
 const express = require("express");
 const router = express.Router();
+
 const db = require("../config/db");
 
-// Checking if user has followed the author
+//checking if user have followed the author
 router.get("/:authorid/:userId", (req, res) => {
-  const { authorid, userId } = req.params;
-
-  if (!authorid || !userId) {
-    return res.status(400).send({ error: "Missing required parameters" });
-  }
-
-  db.query(
-      "SELECT * FROM followingactions WHERE following = ? AND follower = ?",
-      [authorid, userId],
-      (err, results) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send({ error: "Database error" });
-        }
-        res.send(results.length === 0 ? "empty" : "not-empty");
+  db.query(`SELECT * FROM followingactions WHERE following = "${req.params.authorid}" and follower=${req.params.userId}  `, (err, results) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      if (results.length === 0) {
+        res.send("empty")
       }
-  );
+      else {
+
+        res.send("not-empty")
+      }
+
+    }
+  });
 });
 
-// Getting all the authors that the user has followed
+//geting all the author that user have followed
 router.get("/:userId", (req, res) => {
-  const { userId } = req.params;
-
-  if (!userId) {
-    return res.status(400).send({ error: "Missing userId parameter" });
-  }
-
-  db.query(
-      "SELECT * FROM followingactions WHERE follower = ?",
-      [userId],
-      (err, results) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send({ error: "Database error" });
-        }
-        res.send(results);
-      }
-  );
+  db.query(`SELECT * FROM followingactions WHERE follower=${req.params.userId}  `, (err, results) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(results)
+    }
+  })
 });
 
-// Adding to the database that a user has followed an author
+//adding to database that user have followed a author
 router.post("/:authorid/:userId", (req, res) => {
-  const { authorid, userId } = req.params;
-
-  if (!authorid || !userId) {
-    return res.status(400).send({ error: "Missing required parameters" });
-  }
-
   db.query(
-      "INSERT INTO followingactions (follower, following) VALUES (?, ?)",
-      [userId, authorid],
-      (err, result) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send({ error: "Database error" });
-        }
-        res.status(201).send(result);
+    "INSERT INTO followingactions (follower, following) VALUES (?,?)",
+    [req.params.userId, req.params.authorid],
+    (err, myresult) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(myresult)
       }
+    }
   );
 });
 
-// User unfollowed an author
+//user unfollowed a post
 router.post("/delete/:authorid/:userId", (req, res) => {
-  const { authorid, userId } = req.params;
-
-  if (!authorid || !userId) {
-    return res.status(400).send({ error: "Missing required parameters" });
-  }
-
   db.query(
-      "DELETE FROM followingactions WHERE following = ? AND follower = ?",
-      [authorid, userId],
-      (err, result) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send({ error: "Database error" });
-        }
-        res.send(result);
+    `DELETE FROM followingactions WHERE following = "${req.params.authorid}" and follower=${req.params.userId}`,
+    (err, myresult) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(myresult)
       }
+    }
   );
 });
 
-// Getting the number of people following this user
+//geting the number of pepole follwing this user
 router.get("/count/followers/:userId", (req, res) => {
-  const { userId } = req.params;
-
-  if (!userId) {
-    return res.status(400).send({ error: "Missing userId parameter" });
-  }
-
-  db.query(
-      "SELECT COUNT(follower) AS followerCount FROM followingactions WHERE following = ?",
-      [userId],
-      (err, results) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send({ error: "Database error" });
-        }
-        res.send(results[0]);
-      }
-  );
+  db.query(`SELECT COUNT(follower)
+  FROM followingactions
+  where following=${req.params.userId}  `, (err, results) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log(results[0]['COUNT(follower)'])
+      res.send(results)
+    }
+  })
 });
 
-// Getting the number of people this user is following
+//geting the number of pepole  this user is following
 router.get("/count/following/:userId", (req, res) => {
-  const { userId } = req.params;
-
-  if (!userId) {
-    return res.status(400).send({ error: "Missing userId parameter" });
-  }
-
-  db.query(
-      "SELECT COUNT(following) AS followingCount FROM followingactions WHERE follower = ?",
-      [userId],
-      (err, results) => {
-        if (err) {
-          console.error(err);
-          return res.status(500).send({ error: "Database error" });
-        }
-        res.send(results[0]);
-      }
-  );
+  db.query(`SELECT COUNT(following)
+  FROM followingactions
+  where follower=${req.params.userId}  `, (err, results) => {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log(results[0]['COUNT(following)'])
+      res.send(results)
+    }
+  })
 });
+
+
 
 module.exports = router;

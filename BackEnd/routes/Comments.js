@@ -1,43 +1,38 @@
 const express = require("express");
 const router = express.Router();
+
 const db = require("../config/db");
 
-// Adding a new comment
+
+// adding new comment
 router.post("/add", (req, res) => {
-    const { comment, postid, userid } = req.body;
-
-    if (!comment || !postid || !userid) {
-        return res.status(400).send({ error: "Missing required fields" });
-    }
-
+    console.log(JSON.stringify(req.body))
+    const comment = req.body.comment;
+    const postid = req.body.postid;
+    const userid = req.body.userid;
     db.query(
-        "INSERT INTO comments (comment, postid, userid) VALUES (?, ?, ?)",
+        "INSERT INTO comments (comment, postid, userid ) VALUES (?,?,?)",
         [comment, postid, userid],
-        (err, result) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send({ error: "Database error" });
-            }
-            res.status(201).send({ message: "Comment added", result });
+        (err, myresult) => {
+          if (err) {
+            console.log(err);
+          } 
+          res.send(myresult)
         }
-    );
-});
+      );
 
-// Get all comments for a specific post
+});
+//get all the comments to aspecfic post
 router.get("/:postid", (req, res) => {
-    const postid = req.params.postid;
-
-    db.query(
-        "SELECT * FROM comments WHERE postid = ? ORDER BY date DESC",
-        [postid],
-        (err, results) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).send({ error: "Database error" });
-            }
-            res.send(results);
-        }
-    );
-});
+    db.query(`SELECT * FROM comments where postid = "${req.params.postid}" 
+       ORDER BY date DESC `, (err, results) => {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        res.send(results)
+      }
+    })
+  });
 
 module.exports = router;
