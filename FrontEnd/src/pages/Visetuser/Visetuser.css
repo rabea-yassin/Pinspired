@@ -1,0 +1,141 @@
+    .Visetuser {
+        margin-top: 90px;
+        margin-bottom: 40px;
+    }
+
+    @media (max-width: 800px) {
+        .Visetuser {
+            margin-top: 55px;
+        }
+    }
+
+    .Visetuser .wrap1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        margin-bottom: 32px;
+    }
+
+    .Visetuser .accountinfoilement {
+        box-sizing: border-box;
+        padding-bottom: 4px;
+        padding-top: 4px;
+        margin-right: 0;
+        margin-right: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .Visetuser .accountinfoilement>h1 {
+        color: #111;
+        margin: 8px;
+        font-weight: bolder;
+    }
+
+    .Visetuser .nf {
+        font-weight: lighter;
+    }
+
+    .Visetuser .profilepic {
+        width: 140px;
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .Visetuser .profilepic img {
+        height: 150px;
+        margin-left: 12px;
+        border-radius: 50%;
+        border: rgb(0, 0, 0) 5px solid;
+    }
+
+    .Visetuser .profbtn {
+        border-radius: 20px;
+        border: 1px solid #a1c2e7;
+        background-color: #709eda;
+        /* border: 1px solid #FF4B2B;
+	background-color: #FF4B2B; */
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+    }
+
+    .Visetuser .profbtn:focus {
+        outline: none;
+    }
+
+    /******************************************************/
+
+    .Visetuser .viewingcateg {
+        margin-top: 24px;
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        height: 80px;
+        border-top: 5px solid sandybrown;
+        border-bottom: 5px solid sandybrown;
+        padding: 12px 0px;
+    }
+
+    .Visetuser .viewingcateg .profbtn {
+        padding: 10px 20px;
+        border: 1px solid sandybrown;
+        background-color: rgb(255, 255, 255);
+        color: sandybrown;
+    }
+
+    .Visetuser .viewingcateg .profbtn:focus {
+        outline: none;
+    }
+
+    .Visetuser .viewingcateg .selected {
+        outline: none;
+        background-color: sandybrown;
+        color: white;
+    }
+
+    /*****************************************/
+
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+    .Visetuser p {
+        background: #f6f5f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: 'Montserrat', sans-serif;
+        height: 100vh;
+    }
+
+    .Visetuser .overlaybutton {
+        cursor: pointer;
+        margin: 12px;
+        border-radius: 11px;
+        text-align: center;
+        font-weight: bold;
+        justify-content: center;
+        min-width: 60px;
+        height: 45px;
+        background-color: #e41506f3;
+        color: white;
+    }
+
+    .Visetuser .overlaybutton:hover {
+        background-color: rgba(214, 0, 0, 1);
+    }
+
+    .Visetuser .overlaybutton:focus {
+        outline: none;
+    }
+
+    .clickable {
+        cursor: pointer;
+    }

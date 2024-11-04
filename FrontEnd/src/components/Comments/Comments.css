@@ -1,0 +1,60 @@
+.Comments{
+width: 85%;
+height: 90%;
+min-height: 230px;
+margin-right: auto;
+margin-left: auto;
+border-radius: 12px;
+}
+.Enteracomment{
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+}
+.Enteracomment .userpic{
+  height: 35px;
+  width: 35px;
+  border: none;
+}
+.Enteracomment input{
+   width: 65%;
+   border-radius: 12px;
+   padding-left: 12px;
+   height: 35px;
+  }
+  .Enteracomment input:focus{
+  outline: none;
+   }
+   .Enteracomment button{
+   margin: 0;
+   margin-right: 7px;
+   margin-left: 1.2px;
+   height: 40px;
+   }
+   /*****************************************************/
+   .existingcomments{
+       width: 82%;
+       height: calc(100% - 70px);
+       background-color: white;
+       margin-left: auto;
+       margin-right: auto;
+       margin-top: 12px;
+       border-radius: 12px;
+       overflow-y: scroll;
+
+   }
+   /*********************************************/
+   .comment{
+     display: flex;
+     flex-direction: row;
+     border-bottom: 1.2px solid black;
+    align-items: center;
+   }
+   .comment .userpic{
+   border:  none;
+   height: 30px;
+   width: 30px;
+  }
+  .comment .commentby{
+ margin-right: 12px;
+  }

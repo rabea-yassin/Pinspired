@@ -1,0 +1,54 @@
+#userslist {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  width: 320px;
+  max-height: 300px;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  /* display: none; */
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 20px;
+  transition: 700ms ease-in-out;
+  background-color: rgba(255, 255, 255, 1);
+  border: rgb(15, 15, 15) solid 7px;
+  max-width: 80%;
+  /* overflow-y: scroll; */
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+#userslist.active {
+  /* transform: translate(-50%, -50%) ; */
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  opacity: 1;
+  pointer-events: all;
+  /* background-color: rgb(226, 154, 87); */
+}
+
+/*********************************************/
+
+#overlay {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  position: fixed;
+  transition: 700ms ease-in-out;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.63);
+  /* pointer-events: none */
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}

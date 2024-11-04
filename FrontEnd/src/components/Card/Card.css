@@ -1,0 +1,138 @@
+.card {
+  position: relative;
+  break-inside: avoid;
+  width: 236px;
+  margin-bottom: 16px;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-radius: 16px;
+  transition: 700ms ease-in-out;
+}
+
+.card>* {
+  border-radius: 16px;
+}
+
+.card-img {
+  display: block;
+  width: 100%;
+}
+
+/****************************************************************/
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: left;
+  opacity: 0;
+  border-radius: 16px;
+}
+
+.card-overlay:hover {
+  opacity: 1;
+}
+
+.card button {
+  cursor: pointer;
+  margin: 12px;
+  margin-left: 0;
+  border-radius: 11px;
+  text-align: center;
+  font-weight: bold;
+  justify-content: center;
+  width: 60px;
+  height: 45px;
+  background-color: #e41506f3;
+  color: white;
+}
+
+.card button:hover {
+  background-color: rgba(214, 0, 0, 1);
+}
+
+.card button:focus {
+  outline: none;
+}
+
+/****************************************************************/
+
+.card .source {
+  /* pointer-events: all; */
+  cursor: pointer;
+  padding: 5px;
+  max-width: 125px;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  left: -4px;
+  margin: 12px;
+  background-color: rgb(219, 219, 219);
+  color: black;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.card .source:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.card .arrow2pic {
+  position: absolute;
+  left: 12px;
+  /* transform: rotate(180deg); */
+  height: 15px;
+}
+
+.card .link {
+  max-width: 90px;
+  padding-left: 12px;
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card .link>a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/****************************************************************/
+
+.card .likebtn {
+  cursor: pointer;
+  width: 40px;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.card .likebtn:hover {
+  transform: scale(1.2);
+}
+
+.card button:focus {
+  outline: none;
+}
+
+/****************************************************************/
+
+.card .clickformore {
+  width: 100%;
+  height: calc(100% - 103px);
+  position: absolute;
+  bottom: 45px;
+  /* top: 72px; */
+  cursor: zoom-in;
+}

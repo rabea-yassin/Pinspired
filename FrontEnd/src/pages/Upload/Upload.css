@@ -1,0 +1,85 @@
+.Upload {
+    width: 100%;
+    Height: 120vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient( to bottom right, #e796a2, rgb(66, 186, 255));
+}
+
+/* background-image: linear-gradient( to bottom right,rgb(43, 255, 75), rgb(43,75,255)); */
+
+.UploadForm {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    max-width: 100%;
+}
+
+.UploadForm input, .UploadForm button {
+    margin: 10px;
+    max-width: 400px;
+    height: 50px;
+    font-size: 20px;
+    padding-left: 7px;
+    border-radius: 12px;
+}
+
+/* background-image: linear-gradient( to bottom right, rgb(2, 199, 31),rgb(0, 150, 22)); */
+
+.UploadForm button {
+    border-radius: 20px;
+    border: 2px solid #000000;
+    background: rgb(196, 202, 226);
+    color: rgb(104, 104, 104);        /* background-image: linear-gradient( to bottom right,rgb(255,66,108), rgb(255,75,43)); */
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.UploadForm button:hover {
+    cursor: pointer;
+}
+
+.UploadForm button:active {
+    transform: scale(0.95);
+}
+
+h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/*******************************************************/
+
+.Upload .btns {
+    margin: 25px 0;
+    display: inline-flex;
+}
+
+.Upload .btns a {
+    background-color: rgba(255, 255, 255, 0.473);
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+    border: 2px solid #000000;
+    color: #000000;
+    font-weight: 500;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.Upload .btns a:hover {
+    background: rgba(220, 225, 245,1);
+    color: rgb(104, 104, 104);
+}
+
+.Upload *:focus {
+    outline: none;
+}

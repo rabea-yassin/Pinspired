@@ -1,0 +1,120 @@
+.Profile {
+    margin-top: 90px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 800px) {
+    .Profile {
+        margin-top: 55px;
+    }
+}
+
+.Profile .accountinfoilement {
+    box-sizing: border-box;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    margin-right: 0;
+    margin-right: 0;
+    align-items: center;
+    text-align: center;
+}
+
+.Profile .accountinfoilement>h1 {
+    color: #111;
+    margin: 8px;
+    font-weight: bolder;
+}
+
+.Profile .nf {
+    font-weight: lighter;
+}
+
+.Profile .profilepic {
+    width: 140px;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Profile .profilepic img {
+    height: 150px;
+    width: 150px;
+    margin-left: 12px;
+    border-radius: 50%;
+    border: rgb(0, 0, 0) 5px solid;
+}
+
+.Profile .profbtn {
+    border-radius: 20px;
+    border: 1px solid rgb(27, 27, 27);
+    background-color: rgb(138, 138, 138);
+    /* border: 1px solid #FF4B2B;
+	background-color: #FF4B2B; */
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin: 8px;
+    cursor: pointer;
+}
+
+.Profile .profbtn:focus {
+    outline: none;
+}
+.Profile .profbtn:hover {
+    border: 1px solid rgb(30, 88, 124);
+    background-color:rgb(77, 138, 175);
+}
+
+/******************************************************/
+
+.Profile .viewingcateg {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 80px;
+    border-top: 5px solid rgb(91, 152, 190);
+    border-bottom: 5px solid rgb(91, 152, 190);
+    padding: 12px 0px;
+}
+
+.Profile .viewingcateg .profbtn {
+    padding: 10px 20px;
+    background-image: none;
+    border: 1px solid rgb(91, 152, 190);
+    background-color: rgb(255, 255, 255);
+    color: rgb(91, 152, 190);
+}
+
+.Profile .viewingcateg .profbtn:focus {
+    outline: none;
+}
+
+.Profile .viewingcateg .selected {
+    outline: none;
+    background-color: rgb(91, 152, 190);
+    color: white;
+}
+
+/*****************************************/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+.Profile #msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+}
+
+/*****************************************/
+
+.clickable {
+    cursor: pointer;
+}

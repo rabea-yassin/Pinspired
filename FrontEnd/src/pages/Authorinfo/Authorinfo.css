@@ -1,0 +1,49 @@
+.authorinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 5px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  bottom: 5px;
+}
+
+.userpic {
+  width: 45px;
+  height: 45px;
+  margin-right: 12px;
+  margin-left: 12px;
+  border-radius: 50%;
+  border: black 1.5px solid;
+}
+
+.authorinfocon {
+  position: relative;
+  max-height: 70px;
+}
+
+.authorinfo button {
+  cursor: pointer;
+  margin: 12px;
+  border-radius: 11px;
+  text-align: center;
+  font-weight: bold;
+  justify-content: center;
+  min-width: 60px;
+  height: 45px;
+  background-color: #e41506f3;
+  color: white;
+}
+
+.authorinfo button:hover {
+  background-color: rgba(214, 0, 0, 1);
+}
+
+.authorinfo button:focus {
+  outline: none;
+}

@@ -1,0 +1,148 @@
+.Update {
+    margin-top: 90px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 800px) {
+    .Update {
+        margin-top: 55px;
+    }
+}
+
+.Update .accountinfoilement {
+    box-sizing: border-box;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    margin-right: 0;
+    margin-right: 0;
+    align-items: center;
+    text-align: center;
+}
+
+.Update .accountinfoilement>h1 {
+    color: #111;
+    margin: 8px;
+    font-weight: bolder;
+}
+
+.Update .profilepic {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    align-self: center;
+    border-radius: 50%;
+    border: rgb(0, 0, 0) 5px solid;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(158, 158, 158);
+}
+
+.Update .profilepic img {
+    background-color: rgb(158, 158, 158);
+    height: 150px;
+}
+
+.Update .profbtn {
+    border-radius: 20px;
+    border: 1px solid #a1c2e7;
+    background-color: #709eda;
+    /* border: 1px solid #FF4B2B;
+	background-color: #FF4B2B; */
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.Update .profbtn:focus {
+    outline: none;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+.Update #msg {
+    /* background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column; */
+    font-family: 'Montserrat', sans-serif;
+    /* height: 100vh; */
+}
+
+/*************************************************************/
+
+.dashedline {
+    width: 100%;
+    margin-top: 12px;
+    border-top: rgb(91, 152, 190) 7px dashed;
+}
+
+.update-contaner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+    max-width: 650px;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.update-contaner .btn {
+    border-radius: 20px;
+    border: 1px solid #a1c2e7;
+    background-color: #709eda;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin-bottom: 40px;
+}
+
+.update-contaner .btn:active {
+    transform: scale(0.95);
+}
+
+.update-contaner *:focus {
+    outline: none;
+}
+
+.update-contaner input {
+    background-color: #eee;
+    border: none;
+    padding: 15px 15px;
+    margin: 8px 0;
+    width: 80%;
+    border-radius: 16px;
+}
+
+.delete {
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 100ms ease-in;
+    margin-bottom: 40px;
+    background-color: rgba(204, 0, 0, 0.863);
+    cursor: pointer;
+}
+
+.delete:hover {
+    transform: scale(0.9);
+    transition: transform 200ms ease-in;
+    background-color: rgb(204, 10, 10);
+}

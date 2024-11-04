@@ -1,0 +1,238 @@
+.container {
+  margin-top: 90px;
+  margin-bottom: 90px;
+}
+
+/****************************************************/
+
+.PostDetails {
+  background-color: rgba(255, 255, 255, 0.171);
+  max-width: 1016px;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 508px 508px;
+  box-shadow: 7px 14px 28px rgba(0, 0, 0, 0.25), 7px 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.PostDetails>* {
+  border-radius: 16px;
+}
+
+/****************************************************/
+
+.PostDetails .postimg {
+  width: 508px;
+  max-width: 100%;
+  background-color: rgb(190, 190, 190);
+}
+
+.PostDetails .details {
+  min-height: 150px;
+  /* background-color: royalblue; */
+  display: grid;
+  grid-template-rows: 77px 70px auto auto;
+}
+
+.details {
+  background-color: rgb(230, 230, 230);
+}
+
+.details>* {
+  margin: 8px;
+}
+
+/****************************************************/
+
+.PostDetails .SnLndelete {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.PostDetails .saveNlike {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+}
+
+.PostDetails button {
+  cursor: pointer;
+  margin: 12px;
+  margin-left: 0;
+  border-radius: 11px;
+  text-align: center;
+  font-weight: bold;
+  justify-content: center;
+  min-width: 60px;
+  height: 45px;
+  background-color: #ca1b0ff3;
+  color: white;
+  transition: 700ms ease-in-out;
+}
+
+.PostDetails button:hover {
+  transition: 100ms ease-in-out;
+  background-color: rgba(214, 0, 0, 1);
+}
+
+.PostDetails button:focus {
+  outline: none;
+}
+
+.PostDetails .likebtn {
+  margin: 12px;
+  margin-left: 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease;
+}
+
+.PostDetails .likebtn:hover {
+  transform: scale(1.2);
+}
+
+.PostDetails .likebtn:focus {
+  outline: none;
+}
+
+.likes {
+  cursor: pointer;
+}
+
+/************************************************************/
+
+/* .titleNdescription{
+  min-height: 30px;
+}
+.FromTheSameUser{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+/************************************************************/
+
+.PostDetails .source {
+  /* pointer-events: all; */
+  cursor: pointer;
+  padding: 5px;
+  height: 20px;
+  width: 220px;
+  margin: 12px;
+  background-color: rgb(219, 219, 219);
+  color: black;
+  border-radius: 15px;
+  display: grid;
+}
+
+.PostDetails .source:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.PostDetails .link {
+  padding-left: 12px;
+  padding-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.PostDetails .link>a {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/***************************************/
+
+.viewingcateg {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 80px;
+  border-top: 5px solid rgb(91, 152, 190);
+  border-bottom: 5px solid rgb(91, 152, 190);
+  padding: 12px 0px;
+}
+
+.adDiv {
+  width: 90%;
+}
+
+/***************************************/
+
+.notfound {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(182, 182, 182);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.notfound .btns {
+  margin: 25px 0;
+  display: inline-flex;
+}
+
+.notfound .btns a {
+  background-color: rgba(255, 255, 255, 0.473);
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  border: 2px solid #000000;
+  color: #000000;
+  font-weight: 500;
+  padding: 10px 25px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.notfound .btns a:hover {
+  background: #020f57;
+  color: #fff;
+}
+
+.notfound *:focus {
+  outline: none;
+}
+
+/***************************************/
+
+@media (max-width: 1056px) {
+  .PostDetails {
+    width: 508px;
+    grid-template-columns: 508px;
+  }
+}
+
+@media (max-width: 508px) {
+  .PostDetails {
+    width: 80%;
+    grid-template-columns: 1fr;
+  }
+  .PostDetails .details {
+    min-height: 150px;
+    /* background-color: royalblue; */
+    display: grid;
+    grid-template-rows: auto auto auto;
+  }
+  .FromTheSameUser {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .container {
+    margin-top: 55px;
+  }
+}
+
+/*/////////////////////////////////////////////////*/

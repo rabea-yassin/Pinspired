@@ -1,0 +1,12 @@
+.Home {
+    display: block;
+    margin-top: 90px;
+}
+
+@media (max-width: 800px) {
+    .Home {
+        margin-top: 55px;
+    }
+}
+
+/*****************************************/

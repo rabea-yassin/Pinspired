@@ -1,0 +1,28 @@
+.friendsposts {
+    display: block;
+    margin-top: 90px;
+}
+
+@media (max-width: 800px) {
+    .friendsposts {
+        margin-top: 55px;
+    }
+}
+
+.friendsposts h2 {
+    margin-left: 12px;
+}
+
+/*****************************************/
+
+.note {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: black 5px dashed;
+}
+
+.note h2 {
+    max-width: 512px;
+}

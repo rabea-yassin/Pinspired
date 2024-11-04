@@ -1,0 +1,102 @@
+.Navbar-container>* {
+    box-sizing: border-box;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.Navbar-container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.Navbar-container .navbar {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient( to right, #af5c69, rgb(60, 111, 143));
+    /* background-image: linear-gradient( to right,rgb(255,66,108), rgb(255,75,43)); */
+    color: white;
+}
+
+.Navbar-container .brand-title a {
+    font-size: 1.5rem;
+    margin: .5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.Navbar-container .navbar-links {
+    height: 100%;
+}
+
+.Navbar-container .navbar-links ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.Navbar-container .navbar-links li {
+    list-style: none;
+}
+
+.Navbar-container .navbar-links li a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+}
+
+.Navbar-container .navbar-links li:hover {
+    background-color: rgba(55, 55, 55, 0.3);
+}
+
+.Navbar-container .toggle-button {
+    position: absolute;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    /* height: 21px; */
+}
+
+.Navbar-container .toggle-button .bar {
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 2px;
+    padding: 3.5px;
+}
+
+@media (max-width: 800px) {
+    .Navbar-container .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .Navbar-container .toggle-button {
+        display: flex;
+    }
+    .Navbar-container .navbar-links {
+        display: none;
+        width: 100%;
+    }
+    .Navbar-container .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+    .Navbar-container .navbar-links ul li {
+        text-align: center;
+    }
+    .Navbar-container .navbar-links ul li a {
+        padding: .5rem 1rem;
+    }
+    .Navbar-container .navbar-links.active {
+        display: flex;
+    }
+}
