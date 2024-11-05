@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Gridcontaner.css";
-import { Card } from "../../components/Card/Card";
+import { Card } from "../Card/Card";
 
 
 
 
-export function Gridcontaner(props) {
+export function GridContaner(props) {
 
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './ProfileCard.css';
-import { Authorinfo } from "../../pages/Authorinfo/Authorinfo";
+import { AuthorInfo } from "../../pages/AuthorInfo/AuthorInfo";
 
 
 
@@ -20,7 +20,7 @@ export function ProfileCard(props) {
     <div className="ProfileCard-container">
       <div id="userslist"  >   {props.array.map((val, key) => {
         return (
-          <Authorinfo authorid={val.id} ></Authorinfo>
+          <AuthorInfo authorid={val.id} ></AuthorInfo>
         );
       })}</div>
 

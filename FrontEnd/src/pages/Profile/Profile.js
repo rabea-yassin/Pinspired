@@ -3,15 +3,17 @@ import React, { useEffect, useState } from "react";
 import { Image } from "cloudinary-react";
 import "./Profile.css";
 import Navbar from "../../components/Navbar/Navbar";
-import { Gridcontaner } from "../../components/Gridcontaner/Gridcontaner";
-import { useHistory } from "react-router-dom";
+import { GridContaner } from "../../components/GridContainer/GridContaner";
+
+import { useNavigate } from "react-router-dom";
 import { ProfileCard } from "../../components/ProfileCard/ProfileCard";
 
 
 
 
 export function Profile() {
-  let history = useHistory();
+  let navigate = useNavigate
+();
 
   const [msg, setmsg] = useState('');
   const [userinfo, setuserinfo] = useState([]);
@@ -56,7 +58,7 @@ export function Profile() {
     // a msg of come back soon 
     setmsg(' come back soon 😜 ')
     //after 1.5sec  will be dircted to the form page
-    setTimeout(function () { history.push("/"); }, 1000);
+    setTimeout(function () { navigate("/"); }, 1000);
     //deleting the user info 
     sessionStorage.setItem("loggedin", false);
     sessionStorage.setItem("userid", null);
@@ -121,16 +123,16 @@ export function Profile() {
               <span> {followerscount} <span className='clickable' onClick={usersFollowThisUser}> followers </span> . {followingcount}<span className='clickable' onClick={usersThisUserIsFollowing}> following </span> </span>
             </div>
             <div className='accountinfoilement'>
-              <button className="profbtn" onClick={logout}>logout</button><button className="profbtn" onClick={() => { history.push("/Update"); }}>update</button>
+              <button className="profbtn" onClick={logout}>logout</button><button className="profbtn" onClick={() => { navigate("/Update"); }}>update</button>
             </div>
           </div>
           <div className="viewingcateg">
-            <button className="profbtn selected" onClick={() => { history.push("/profile"); }}> my Uploads </button>
-            <button className="profbtn" onClick={() => { history.push("/Profile/saved"); }}> saved </button>
-            <button className="profbtn" onClick={() => { history.push("/Profile/liked"); }}> liked </button>
+            <button className="profbtn selected" onClick={() => { navigate("/profile"); }}> my Uploads </button>
+            <button className="profbtn" onClick={() => { navigate("/Profile/saved"); }}> saved </button>
+            <button className="profbtn" onClick={() => { navigate("/Profile/liked"); }}> liked </button>
 
           </div>
-          <Gridcontaner array={yourUploads}></Gridcontaner>
+          <GridContaner array={yourUploads}></GridContaner>
         </div>
 
 

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 
-export function Authorinfo(props) {
+export function AuthorInfo(props) {
 
 
     const [authorinfo, setauthorinfo] = useState([]);
@@ -35,7 +35,7 @@ export function Authorinfo(props) {
 
 
 
-    //checking if the user have saved this 
+    //checking if the user have saved this
     useEffect(() => {
         Axios.get(`http://localhost:3001/follow/${authorid}/${sessionStorage.getItem("userid")}`).then((response) => {
             if (response.data == "not-empty") {

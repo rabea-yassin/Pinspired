@@ -1,0 +1,48 @@
+Pinspierd:
+    /BackEnd
+        /idea
+        /config ( both think not important )
+        /routes
+            Comments.js
+            Follow.js
+            Related.js
+            Save.js
+            Update.js
+            Upload.js
+            User.js
+        index.js
+        package.jason ( don't know if important to upload )
+        package-lock.jason ( don't know if important to upload )
+    /FrontEnd
+        /public ( a bunch of images and icons )
+        /src
+            /components
+                /Card
+                /Comments
+                /GridContainer
+                /Navbar
+                /ProfileCard
+                /Search
+                * each of the above include a css and at least on js file
+            /pages
+                /AuthorInfo
+                /Error
+                /form
+                /Friends
+                /Home
+                /Loading
+                /PostDetails
+                /Profile
+                /Update
+                /Upload
+                /VisitUser
+                * each of the above include a css and at least on js file
+            App.css
+            App.js
+            App.test.js
+            index.css
+            index.js
+            logo.svg
+            reportWebVitals.js
+            setupTests.js
+        .env

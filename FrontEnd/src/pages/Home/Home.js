@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import './Home.css';
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
-import {Gridcontaner} from "../../components/Gridcontaner/Gridcontaner";
+import {GridContaner} from "../../components/GridContainer/GridContaner";
 
 
 
@@ -33,7 +33,7 @@ export function Home() {
 		<div className="Home">
 			<Navbar></Navbar>
 			{sessionStorage.getItem("loggedin") == "true" ?
-				<Gridcontaner  array={uploads}></Gridcontaner>
+				<GridContaner  array={uploads}></GridContaner>
 				:
 				<h1>please signin first</h1>}
 

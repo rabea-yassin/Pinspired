@@ -3,21 +3,21 @@ import React, { useEffect, useState } from "react";
 import { Image } from "cloudinary-react";
 import "./Visetuser.css";
 import Navbar from "../../components/Navbar/Navbar";
-import {Gridcontaner} from "../../components/Gridcontaner/Gridcontaner";
-import { useHistory } from "react-router-dom";
+import {GridContaner} from "../../components/GridContainer/GridContaner";
+import { useNavigate } from "react-router-dom";
 import { ProfileCard } from "../../components/ProfileCard/ProfileCard";
 import { Link } from "react-router-dom";
-
+import { useParams } from "react-router-dom"; // Add useParams
 
 
 
 export function Visetuser({ match }) {
-  let history = useHistory();
+    let navigate = useNavigate();
 
   const [msg, setmsg] = useState('');
   const [userinfo, setuserinfo] = useState([]);
   const [userUploads, setuserUploads] = useState([]);
-  const userid = match.params.userid
+  const { userid } = useParams(); // Use useParams to get userid
   const [following, setfollowign] = useState();
 
 
@@ -160,7 +160,7 @@ function usersThisUserIsFollowing(){
           <div className="viewingcateg"> 
            <h1>uploads</h1>
               </div>
-              <Gridcontaner  array={userUploads}></Gridcontaner>
+              <GridContaner  array={userUploads}></GridContaner>
         </div>
 
 

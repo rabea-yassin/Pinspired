@@ -3,63 +3,52 @@ const router = express.Router();
 
 const db = require("../config/db");
 
-//uploading new post 
+//uploading new post
 router.post("/", (req, res) => {
-  const title = req.body.title;
-  const description = req.body.description;
-  const picpath = req.body.picpath;
-  const postedby = req.body.postedby;
-  const link = req.body.link;
-  const categname = req.body.categname;
+  const { title, description, picpath, postedby, link, categname } = req.body;
 
+  console.log("Received upload request with data:", req.body);
 
   db.query(
-    `SELECT * FROM category WHERE categname = "${req.body.categname}"`, (err, result) => {
-      if (err) {
-        console.log(err);
-        throw (err)
-      } else {
-        console.log("result" + JSON.stringify(result))
+      `SELECT * FROM category WHERE categname = "${categname}"`, (err, result) => {
+        if (err) {
+          console.error("Error fetching category:", err);
+          return res.status(500).send("Error fetching category");
+        }
+
+        console.log("Category fetch result:", result);
+
         if (result.length === 0) {
+          console.log("Category not found. Adding new category:", categname);
           db.query(
-            //we have to add this new category
-            "INSERT INTO category (categname) VALUES (?)",
-            [categname],
-            (err, myresult) => {
-              if (err) {
-                console.log(err);
-                throw (err)
+              "INSERT INTO category (categname) VALUES (?)",
+              [categname],
+              (err, categoryResult) => {
+                if (err) {
+                  console.error("Error inserting category:", err);
+                  return res.status(500).send("Error inserting category");
+                }
+                console.log("Category inserted:", categoryResult);
               }
-            }
           );
-          // after that we are going to add the post info
-          db.query(
-            "INSERT INTO post (title, description, picpath, postedby,link,categname) VALUES (?, ?, ?, ?, ?, ?);",
-            [title, description, picpath, postedby, link, categname],
-            (err, results) => {
-              console.log(err);
-              res.send(results);
-            }
-          );
+        }
 
-        }
-        else {
-          //we are going to add the post information dirctly
-          db.query(
-            "INSERT INTO post (title, description, picpath, postedby,link,categname) VALUES (?, ?, ?, ?, ?, ?);",
+        console.log("Inserting post into database...");
+
+        db.query(
+            "INSERT INTO post (title, description, picpath, postedby, link, categname) VALUES (?, ?, ?, ?, ?, ?);",
             [title, description, picpath, postedby, link, categname],
-            (err, results) => {
-              console.log(err);
-              res.send(results);
+            (err, postResult) => {
+              if (err) {
+                console.error("Error inserting post:", err);
+                return res.status(500).send("Failed to save post to the database");
+              }
+              console.log("Post saved successfully:", postResult);
+              res.status(200).send("Post saved successfully");
             }
-          );
-        }
-      };
-    }
+        );
+      }
   );
-
-
-
 });
 
 //geting all the posts

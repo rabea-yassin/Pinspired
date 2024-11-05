@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Image } from "cloudinary-react";
 import "./Update.css";
 import Navbar from "../../components/Navbar/Navbar";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -18,7 +18,7 @@ export function Update() {
     const [CurrPass, setCurrPass] = useState("");
     const [NewPass, setNewPass] = useState("");
     /*************************************************** */
-    let history = useHistory();
+    let navigate = useNavigate();
 
 
 
@@ -120,7 +120,7 @@ export function Update() {
                         alert("user account have been deleted")
                         sessionStorage.setItem("loggedin", false);
                         sessionStorage.setItem("userid", null);
-                        history.push(`/home`);
+                        navigate(`/home`);
                     });
                 }
             });
@@ -128,7 +128,7 @@ export function Update() {
             // Axios.delete(`http://localhost:3001/upload/${userinfo.id}`).then((response) => {
             // 	console.log(response);
             // 	alert("post have been deleted")
-            // 	history.push(`/home`);
+            // 	navigate(`/home`);
             // });
         }
 

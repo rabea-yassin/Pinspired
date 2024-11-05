@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Search.css";
 import Axios from "axios";
-import { Authorinfo } from "../../pages/Authorinfo/Authorinfo";
+import { AuthorInfo } from "../../pages/AuthorInfo/AuthorInfo";
 
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -37,7 +37,7 @@ export function Search() {
                     }
                 }).map((val, key) => {
                     return (
-                        <Authorinfo authorid={val.id} ></Authorinfo>
+                        <AuthorInfo authorid={val.id} ></AuthorInfo>
                     );
                 })
                 }

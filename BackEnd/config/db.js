@@ -1,6 +1,7 @@
-require('dotenv').config();
 const mysql = require("mysql");
+require('dotenv').config(); // Load environment variables
 
+// Create pool connection using environment variables
 const db_connection = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -10,8 +11,12 @@ const db_connection = mysql.createPool({
 });
 
 db_connection.getConnection((err, connection) => {
-  if (err) console.error(err);
-  console.log('MySQL Connection Established: ', connection.threadId);
+  if (err) {
+    console.error('Database connection failed:', err);
+  } else {
+    console.log('MySQL Connection Established:', connection.threadId);
+    connection.release(); // Release the connection back to the pool
+  }
 });
 
 module.exports = db_connection;

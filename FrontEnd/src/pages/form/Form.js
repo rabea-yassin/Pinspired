@@ -2,12 +2,12 @@ import React from 'react';
 import './Form.css';
 import { useState } from 'react';
 import Axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export function Form() {
 
-	let history = useHistory();
+	let navigate = useNavigate();
 
 	const [Error, setError] = useState('');
 	const [msg, setmsg] = useState('');
@@ -108,7 +108,7 @@ export function Form() {
 					sessionStorage.setItem("userpic", response.data.picpath);
 					setmsg(`welcom back ${(response.data.name)} 🤗`)
 					//after 1sec we will send the user to Home
-					setTimeout(function () { history.push("/Home"); }, 1000);
+					setTimeout(function () { navigate("/Home"); }, 1000);
 
 				}
 				else {

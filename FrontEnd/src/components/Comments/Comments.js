@@ -2,9 +2,9 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Image } from "cloudinary-react";
 import "./Comments.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Comment } from "../Comments/comment";
+import { Comment } from "./comment";
 
 
 
@@ -12,7 +12,7 @@ import { Comment } from "../Comments/comment";
 
 
 export function Comments(props) {
-    let history = useHistory();
+    let navigate = useNavigate();
 
     const [newComment, setnewComment] = useState("");
     const [Commentsarr, setCommentsarr] = useState([]);

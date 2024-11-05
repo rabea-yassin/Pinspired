@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import './Friends.css';
 import Axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
-import { Gridcontaner } from "../../components/Gridcontaner/Gridcontaner";
+import { GridContaner } from "../../components/GridContainer/GridContaner";
+
 
 
 
@@ -33,7 +34,7 @@ export function Friendspost() {
 			<Navbar></Navbar>
 			<div>
 				{sessionStorage.getItem("loggedin") == "true" ?
-					<Gridcontaner array={friendspost}></Gridcontaner>
+					<GridContaner array={friendspost}></GridContaner>
 					:
 					<h1>please signin first</h1>}
 			</div>
